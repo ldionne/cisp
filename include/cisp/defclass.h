@@ -17,9 +17,8 @@
 /**
  * Incrementally build a type, i.e. a sequence of fields.
  *
- * @param name_and_instructions
- * A valid token representing the name of the type, followed by a sequence of
- * instructions of the form:
+ * @param instructions
+ * A sequence of instructions of the form:
  * (instruction_1 [args...])
  * (instruction_2 [args...])
  *         ...
@@ -27,17 +26,10 @@
  *
  * @note A valid instruction is defined by the `CISP_I_INSTRUCTION` macro.
  */
-#define CISP_DEFCLASS(name_and_instructions) \
-    CISP_DEFCLASS_S(CHAOS_PP_STATE(), name_and_instructions)
+#define CISP_DEFCLASS(instructions) \
+    CISP_DEFCLASS_S(CHAOS_PP_STATE(), instructions)
 
-#define CISP_DEFCLASS_S(s, name_and_instructions)                              \
-    CISP_I_DEFCLASS(                                                           \
-        s,                                                                     \
-        CISP_I_TOKEN_STRING_HEAD(name_and_instructions),                       \
-        CISP_I_TOKEN_STRING_TAIL_UNSAFE(name_and_instructions))                \
-/**/
-
-#define CISP_I_DEFCLASS(s, name, instructions)                                 \
+#define CISP_DEFCLASS_S(s, instructions)                                       \
     CHAOS_PP_EXPR_S(s)(                                                        \
         CHAOS_PP_SEQ_FOLD_LEFT_S(                                              \
             s,                                                                 \

@@ -5,8 +5,6 @@
 #include <cisp/defclass.h>
 
 
-#define CISP_TOKEN_name (n a m e)
-
 #define CISP_TOKEN_nothing (n o t h i n g)
 #define CISP_INSTRUCTION_nothing(s, type, args) type
 
@@ -15,9 +13,9 @@
 
 [[[
 /* works without argument */
-CISP_DEFCLASS(name (nothing)) == CISP_I_EMPTY_TYPE()
+CISP_DEFCLASS((nothing)) == CISP_I_EMPTY_TYPE()
 /* and with argument */
-CISP_DEFCLASS(name (nothing ~~~~)) == CISP_I_EMPTY_TYPE()
+CISP_DEFCLASS((nothing ~~~~)) == CISP_I_EMPTY_TYPE()
 /* make sure instructions can modify the type and that modifications are in order */
-CISP_DEFCLASS(name (print 1) (print 2) (print 3)) == CISP_I_EMPTY_TYPE() (1) (2) (3)
+CISP_DEFCLASS((print 1) (print 2) (print 3)) == CISP_I_EMPTY_TYPE() (1) (2) (3)
 ]]]

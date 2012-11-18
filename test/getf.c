@@ -7,7 +7,7 @@
 #include <cisp/setf.h>
 
 
-#define type CISP_DEFCLASS(a (setf b b) (setf c c) (setf d ~ ~ ~))
+#define type CISP_DEFCLASS((setf b b) (setf c c) (setf d ~ ~ ~))
 
 [[[
 CISP_GETF(type, b) == b
