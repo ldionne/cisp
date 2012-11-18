@@ -38,9 +38,4 @@
         CISP_I_TOKEN_STRING_TAIL_UNSAFE(key_value))                            \
 /**/
 
-#if CISP_CONFIG_GENERATE_SHORT_NAMES
-#   define setf(self, key, value) CISP_SETF(self, key, value)
-#   define setf_s(s, self, key, value) CISP_SETF_S(s, self, key, value)
-#endif
-
 #endif /* !CISP_SETF_H */

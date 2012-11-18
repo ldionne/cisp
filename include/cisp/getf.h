@@ -52,9 +52,4 @@
                     key))))                                                    \
 /**/
 
-#if CISP_CONFIG_GENERATE_SHORT_NAMES
-#   define getf(self, key) CISP_GETF(self, key)
-#   define getf_s(s, self, key) CISP_GETF_S(s, self, key)
-#endif
-
 #endif /* !CISP_GETF_H */

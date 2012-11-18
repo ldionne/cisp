@@ -23,9 +23,4 @@
 #define CISP_UNSETF_S(s, self, key) \
     CISP_I_REMOVE_FIRST_FIELD_S(s, self, CISP_I_TOKEN_TO_STRING(key))
 
-#if CISP_CONFIG_GENERATE_SHORT_NAMES
-#   define unsetf(self, key) CISP_UNSETF(self, key)
-#   define unsetf_s(s, self, key) CISP_UNSETF_S(s, self, key)
-#endif
-
 #endif /* !CISP_UNSETF_H */

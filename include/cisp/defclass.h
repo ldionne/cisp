@@ -72,12 +72,4 @@
  */
 #define CISP_I_INSTRUCTION(token) CHAOS_PP_CAT(CISP_INSTRUCTION_, token)
 
-#if CISP_CONFIG_GENERATE_SHORT_NAMES
-#   define defclass(name_and_instructions) \
-        CISP_DEFCLASS(name_and_instructions)
-
-#   define defclass_s(s, name_and_instructions) \
-        CISP_DEFCLASS_S(s, name_and_instructions)
-#endif
-
 #endif /* !CISP_DEFCLASS_H */

@@ -42,13 +42,4 @@
 #   define CISP_CONFIG_VARIADIC_MACROS 0
 #endif
 
-/**
- * This flag determines whether shorter names are defined for the interface.
- * For example, `defclass` will be defined to `CISP_DEFCLASS` if this is
- * enabled. By default, this is enabled.
- */
-#if !defined(CISP_CONFIG_GENERATE_SHORT_NAMES)
-#   define CISP_CONFIG_GENERATE_SHORT_NAMES 1
-#endif
-
 #endif /* !CISP_DETAIL_CONFIG_H */
