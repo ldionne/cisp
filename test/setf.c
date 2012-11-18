@@ -23,6 +23,6 @@ CISP_DEFCLASS(name (setf token value)) == ((t o k e n, value))
 CISP_DEFCLASS(name (setf token ~ ~ ~)) == ((t o k e n, ~ ~ ~))
 /* should be applied one after the other and therefore replace the existing field */
 CISP_DEFCLASS(name (setf token value) (setf token new value)) == CISP_DEFCLASS(name (setf token new value))
-/* should be aplpied in order */
+/* should be applied in order */
 CISP_DEFCLASS(name (setf token token) (setf other other)) == ((t o k e n, token)) ((o t h e r, other))
 ]]]

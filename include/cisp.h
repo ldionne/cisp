@@ -8,5 +8,6 @@
 #include <cisp/defclass.h>
 #include <cisp/getf.h>
 #include <cisp/setf.h>
+#include <cisp/unsetf.h>
 
 #endif /* !CISP_H */
