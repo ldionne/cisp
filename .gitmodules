@@ -1,0 +1,12 @@
+[submodule "ext/joy"]
+	path = ext/joy
+	url = https://github.com/ldionne/joy.git
+[submodule "ext/chaos"]
+	path = ext/chaos
+	url = https://github.com/ldionne/chaos-pp.git
+[submodule "tools/macroize"]
+	path = tools/macroize
+	url = https://github.com/ldionne/macroize.git
+[submodule "tools/cog"]
+	path = tools/cog
+	url = https://github.com/ldionne/cog.git
