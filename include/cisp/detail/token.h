@@ -9,6 +9,8 @@
 #ifndef CISP_DETAIL_TOKEN_H
 #define CISP_DETAIL_TOKEN_H
 
+#include <cisp/detail/base_tokens.h>
+
 #include <chaos/preprocessor/cat.h>
 #include <chaos/preprocessor/detection/is_nullary.h>
 #include <chaos/preprocessor/facilities/expand.h>
