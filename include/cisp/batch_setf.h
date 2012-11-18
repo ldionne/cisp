@@ -5,9 +5,8 @@
 #ifndef CISP_BATCH_SETF_H
 #define CISP_BATCH_SETF_H
 
-#include <cisp/detail/config.h>
+#include <cisp/detail/field.h>
 #include <cisp/detail/token.h>
-#include <cisp/detail/type.h>
 #include <cisp/setf.h>
 
 #include <chaos/preprocessor/control/iif.h>

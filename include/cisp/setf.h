@@ -5,7 +5,6 @@
 #ifndef CISP_SETF_H
 #define CISP_SETF_H
 
-#include <cisp/detail/config.h>
 #include <cisp/detail/token.h>
 #include <cisp/detail/type.h>
 

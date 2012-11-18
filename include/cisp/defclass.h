@@ -5,7 +5,6 @@
 #ifndef CISP_DEFCLASS_H
 #define CISP_DEFCLASS_H
 
-#include <cisp/detail/config.h>
 #include <cisp/detail/token.h>
 #include <cisp/detail/type.h>
 

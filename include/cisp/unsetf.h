@@ -5,9 +5,10 @@
 #ifndef CISP_UNSETF_H
 #define CISP_UNSETF_H
 
-#include <cisp/detail/config.h>
 #include <cisp/detail/token.h>
 #include <cisp/detail/type.h>
+
+#include <chaos/preprocessor/recursion/expr.h>
 
 
 /**

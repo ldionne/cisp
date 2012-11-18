@@ -5,9 +5,8 @@
 #ifndef CISP_GETF_H
 #define CISP_GETF_H
 
-#include <cisp/detail/config.h>
+#include <cisp/detail/field.h>
 #include <cisp/detail/token.h>
-#include <cisp/detail/type.h>
 
 #include <chaos/preprocessor/control/iif.h>
 #include <chaos/preprocessor/control/inline_when.h>
@@ -31,7 +30,7 @@
         CISP_I_GETF(                                                           \
             CHAOS_PP_OBSTRUCT(),                                               \
             CHAOS_PP_NEXT(s),                                                  \
-            self, key))                                                        \
+            self, CISP_I_TOKEN_TO_STRING(key)))                                \
 /**/
 
 #define CISP_I_GETF_ID() CISP_I_GETF
