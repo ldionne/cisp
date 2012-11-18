@@ -6,6 +6,7 @@
 #define CISP_H
 
 #include <cisp/batch_setf.h>
+#include <cisp/batch_unsetf.h>
 #include <cisp/defclass.h>
 #include <cisp/getf.h>
 #include <cisp/setf.h>
