@@ -25,11 +25,11 @@
  * Set a new field without checking whether there already exists a field
  * with the same key.
  */
-#define CISP_I_SET_FIELD_NO_UPDATE(type, key, value) \
-    CISP_I_SET_FIELD_NO_UPDATE_S(CHAOS_PP_STATE(), type, key, value)
+#define CISP_I_SET_FIELD_NO_UPDATE(type, field) \
+    CISP_I_SET_FIELD_NO_UPDATE_S(CHAOS_PP_STATE(), type, field)
 
-#define CISP_I_SET_FIELD_NO_UPDATE_S(s, type, key, value) \
-    CHAOS_PP_SEQ_CONS(type, CISP_I_FIELD(key, value))
+#define CISP_I_SET_FIELD_NO_UPDATE_S(s, type, field) \
+    CHAOS_PP_SEQ_CONS(type, field)
 
 /****************************************************************************/
 
@@ -45,10 +45,10 @@
  * Set a field. If there already exists fields with the same key, update the
  * first of them to be associated with the new value.
  */
-#define CISP_I_SET_FIELD_UPDATE_FIRST(type, key, value) \
-    CISP_I_SET_FIELD_UPDATE_FIRST_S(CHAOS_PP_STATE(), type, key, value)
+#define CISP_I_SET_FIELD_UPDATE_FIRST(type, field) \
+    CISP_I_SET_FIELD_UPDATE_FIRST_S(CHAOS_PP_STATE(), type, field)
 
-#define CISP_I_SET_FIELD_UPDATE_FIRST_S(s, type, key, value)                   \
+#define CISP_I_SET_FIELD_UPDATE_FIRST_S(s, type, field)                        \
     CHAOS_PP_IIF(CHAOS_PP_SEQ_IS_CONS(type)) (                                 \
                                                                                \
         CHAOS_PP_EXPR_S(s)(                                                    \
@@ -57,12 +57,11 @@
                 CHAOS_PP_NEXT(s),                                              \
                 CHAOS_PP_SEQ_HEAD(type),                                       \
                 CHAOS_PP_SEQ_TAIL(type),                                       \
-                key,                                                           \
-                value)),                                                       \
+                field)),                                                       \
                                                                                \
         CHAOS_PP_SEQ_CONS(                                                     \
             CHAOS_PP_SEQ_NIL(),                                                \
-            CISP_I_FIELD(key, value)))                                         \
+            field))                                                            \
 /**/
 
 /* Perform a linear search on the sequence of fields. When we find the field,
@@ -70,19 +69,17 @@
  * the sequence.
  * Precondition: head is a valid field.
  */
-#define CISP_II_SET_FIELD_UPDATE_FIRST(_, s, head, tail, key, value)           \
-    CHAOS_PP_IIF _(CISP_I_FIELD_COMPARE_KEY_OF_S _(s, head, key)) (            \
+#define CISP_II_SET_FIELD_UPDATE_FIRST(_, s, head, tail, field)                \
+    CHAOS_PP_IIF _(CISP_I_FIELD_COMPARE_KEYS_S _(s, head, field)) (            \
         /* If we have found the field, replace it and stop. */                 \
-        CHAOS_PP_SEQ_CONS _(                                                   \
-            tail,                                                              \
-            CISP_I_FIELD(key, value)),                                         \
+        CHAOS_PP_SEQ_CONS _(tail, field),                                      \
                                                                                \
         CHAOS_PP_IIF _(CHAOS_PP_SEQ_IS_NIL _(tail)) (                          \
             /* If this is the end of the sequence, append the new field. */    \
             CHAOS_PP_SEQ_CONS _(                                               \
                 CHAOS_PP_SEQ_CONS _(                                           \
                     CHAOS_PP_SEQ_NIL(),                                        \
-                    CISP_I_FIELD(key, value)),                                 \
+                    field),                                                    \
                 head),                                                         \
             /* Otherwise, call ourselves on the tail, recursively. */          \
             CHAOS_PP_SEQ_CONS _(                                               \
@@ -91,8 +88,7 @@
                     CHAOS_PP_NEXT(s),                                          \
                     CHAOS_PP_SEQ_HEAD _(tail),                                 \
                     CHAOS_PP_SEQ_TAIL _(tail),                                 \
-                    key,                                                       \
-                    value)),                                                   \
+                    field)),                                                   \
                 head)))                                                        \
 /**/
 
@@ -114,10 +110,10 @@
  * Set a field. If there already exists a field with the same key, the type is
  * updated so the key appears only once and is associated with the new value.
  */
-#define CISP_I_SET_FIELD_UPDATE_ALL(type, key, value) \
-    CISP_I_SET_FIELD_UPDATE_ALL_S(CHAOS_PP_STATE(), type, key, value)
+#define CISP_I_SET_FIELD_UPDATE_ALL(type, field) \
+    CISP_I_SET_FIELD_UPDATE_ALL_S(CHAOS_PP_STATE(), type, field)
 
-#define CISP_I_SET_FIELD_UPDATE_ALL_S(s, type, key, value)                     \
+#define CISP_I_SET_FIELD_UPDATE_ALL_S(s, type, field)                          \
     CHAOS_PP_IIF(CHAOS_PP_SEQ_IS_CONS(type)) (                                 \
                                                                                \
         CHAOS_PP_EXPR_S(s)(                                                    \
@@ -126,12 +122,11 @@
                 CHAOS_PP_NEXT(s),                                              \
                 CHAOS_PP_SEQ_HEAD(type),                                       \
                 CHAOS_PP_SEQ_TAIL(type),                                       \
-                key,                                                           \
-                value)),                                                       \
+                field)),                                                       \
                                                                                \
         CHAOS_PP_SEQ_CONS(                                                     \
             CHAOS_PP_SEQ_NIL(),                                                \
-            CISP_I_FIELD(key, value)))                                         \
+            field))                                                            \
 /**/
 
 /* Perform a linear search on the sequence of fields. When we find the field,
@@ -139,8 +134,8 @@
  * don't find it, we prepend the new field to the sequence.
  * Precondition: head is a valid field.
  */
-#define CISP_II_SET_FIELD_UPDATE_ALL(_, s, head, tail, key, value)             \
-    CHAOS_PP_IIF _(CISP_I_FIELD_COMPARE_KEY_OF_S _(s, head, key)) (            \
+#define CISP_II_SET_FIELD_UPDATE_ALL(_, s, head, tail, field)                  \
+    CHAOS_PP_IIF _(CISP_I_FIELD_COMPARE_KEYS_S _(s, head, field)) (            \
         /* If we have found the field, replace it and erase any     */         \
         /* subsequent field with the same key.                      */         \
         CHAOS_PP_SEQ_CONS _(                                                   \
@@ -151,15 +146,15 @@
                         CHAOS_PP_NEXT(s),                                      \
                         CISP_II_SFU_ALL_CONTINUE_PRED,                         \
                         tail,                                                  \
-                        key))),                                                \
-            CISP_I_FIELD(key, value)),                                         \
+                        field))),                                              \
+            field),                                                            \
                                                                                \
         CHAOS_PP_IIF _(CHAOS_PP_SEQ_IS_NIL _(tail)) (                          \
             /* If this is the end of the sequence, append the new field. */    \
             CHAOS_PP_SEQ_CONS _(                                               \
                 CHAOS_PP_SEQ_CONS _(                                           \
                     CHAOS_PP_SEQ_NIL(),                                        \
-                    CISP_I_FIELD(key, value)),                                 \
+                    field),                                                    \
                 head),                                                         \
             /* Otherwise, call ourselves on the tail to continue. */           \
             CHAOS_PP_SEQ_CONS _(                                               \
@@ -169,16 +164,15 @@
                         CHAOS_PP_NEXT(s),                                      \
                         CHAOS_PP_SEQ_HEAD _(tail),                             \
                         CHAOS_PP_SEQ_TAIL _(tail),                             \
-                        key,                                                   \
-                        value)),                                               \
+                        field)),                                               \
                 head)))                                                        \
 /**/
 
 #define CISP_II_SET_FIELD_UPDATE_ALL_ID() CISP_II_SET_FIELD_UPDATE_ALL
 
-/* Return whether the field has the same key as key. */
-#define CISP_II_SFU_ALL_CONTINUE_PRED(s, field, key) \
-    CHAOS_PP_COMPL(CISP_I_FIELD_COMPARE_KEY_OF_S(s, field, key))
+/*Return whether the field has a key different from that of the other field.*/
+#define CISP_II_SFU_ALL_CONTINUE_PRED(s, field1, field2) \
+    CHAOS_PP_COMPL(CISP_I_FIELD_COMPARE_KEYS_S(s, field1, field2))
 
 /****************************************************************************/
 

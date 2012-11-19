@@ -34,7 +34,7 @@
 /**/
 
 #define CISP_I_BATCH_SETF(s, field, self) \
-    CISP_SETF_S(s, self, CISP_I_FIELD_KEY(field), CISP_I_FIELD_VALUE(field))
+    CISP_I_SETF_UNDERLYING_SETTER(s, self, field)
 
 #define CISP_TOKEN_batch_setf (b a t c h _ s e t f)
 #define CISP_INSTRUCTION_batch_setf(s, self, fields) \

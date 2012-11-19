@@ -8,22 +8,22 @@
 [[[
 
 /* should append field */
-CISP_I_SET_FIELD_UPDATE_FIRST(CISP_I_EMPTY_TYPE(), k e y, value) == ((k e y, value))
+CISP_I_SET_FIELD_UPDATE_FIRST(CISP_I_EMPTY_TYPE(), CISP_I_FIELD(k e y, value)) == ((k e y, value))
 /* should replace the only field */
-CISP_I_SET_FIELD_UPDATE_FIRST(((k e y, value)), k e y, new value) == ((k e y, new value))
+CISP_I_SET_FIELD_UPDATE_FIRST(((k e y, value)), CISP_I_FIELD(k e y, new value)) == ((k e y, new value))
 /* should replace first f o o field only */
-CISP_I_SET_FIELD_UPDATE_FIRST(((f o o, foo)) ((b a r, bar)) ((f o o, foo)), f o o, new foo) == ((f o o, new foo)) ((b a r, bar)) ((f o o, foo))
+CISP_I_SET_FIELD_UPDATE_FIRST(((f o o, foo)) ((b a r, bar)) ((f o o, foo)), CISP_I_FIELD(f o o, new foo)) == ((f o o, new foo)) ((b a r, bar)) ((f o o, foo))
 /* should append the new field */
-CISP_I_SET_FIELD_UPDATE_FIRST(((f o o, foo)) ((b a r, bar)), b a z, baz) == ((f o o, foo)) ((b a r, bar)) ((b a z, baz))
+CISP_I_SET_FIELD_UPDATE_FIRST(((f o o, foo)) ((b a r, bar)), CISP_I_FIELD(b a z, baz)) == ((f o o, foo)) ((b a r, bar)) ((b a z, baz))
 
 /* should append field */
-CISP_I_SET_FIELD_UPDATE_ALL(CISP_I_EMPTY_TYPE(), k e y, value) == ((k e y, value))
+CISP_I_SET_FIELD_UPDATE_ALL(CISP_I_EMPTY_TYPE(), CISP_I_FIELD(k e y, value)) == ((k e y, value))
 /* should replace the only field */
-CISP_I_SET_FIELD_UPDATE_ALL(((k e y, value)), k e y, new value) == ((k e y, new value))
+CISP_I_SET_FIELD_UPDATE_ALL(((k e y, value)), CISP_I_FIELD(k e y, new value)) == ((k e y, new value))
 /* should replace first f o o field and remove the other f o o fields */
-CISP_I_SET_FIELD_UPDATE_ALL(((f o o, foo)) ((b a r, bar)) ((f o o, foo)), f o o, new foo) == ((f o o, new foo)) ((b a r, bar))
+CISP_I_SET_FIELD_UPDATE_ALL(((f o o, foo)) ((b a r, bar)) ((f o o, foo)), CISP_I_FIELD(f o o, new foo)) == ((f o o, new foo)) ((b a r, bar))
 /* should append the new field */
-CISP_I_SET_FIELD_UPDATE_ALL(((f o o, foo)) ((b a r, bar)), b a z, baz) == ((f o o, foo)) ((b a r, bar)) ((b a z, baz))
+CISP_I_SET_FIELD_UPDATE_ALL(((f o o, foo)) ((b a r, bar)), CISP_I_FIELD(b a z, baz)) == ((f o o, foo)) ((b a r, bar)) ((b a z, baz))
 
 /* should not remove anything from the empty type and therefore yield the empty type */
 CISP_I_REMOVE_FIRST_FIELD(CISP_I_EMPTY_TYPE(), k e y) == CISP_I_EMPTY_TYPE()

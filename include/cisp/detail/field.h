@@ -37,4 +37,13 @@
 #define CISP_I_FIELD_COMPARE_KEY_OF_S(s, field, key) \
     CHAOS_PP_STRING_COMPARE(key, CISP_I_FIELD_KEY(field))
 
+/**
+ * Return whether two fields have the same key.
+ */
+#define CISP_I_FIELD_COMPARE_KEYS(field1, field2) \
+    CISP_I_FIELD_COMPARE_KEYS_S(CHAOS_PP_STATE(), field1, field2)
+
+#define CISP_I_FIELD_COMPARE_KEYS_S(s, field1, field2) \
+    CISP_I_FIELD_COMPARE_KEY_OF_S(s, field1, CISP_I_FIELD_KEY(field2))
+
 #endif /* !CISP_DETAIL_FIELD_H */
