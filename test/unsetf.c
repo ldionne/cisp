@@ -17,7 +17,7 @@ CISP_UNSETF(type, g) == type
 CISP_UNSETF(CISP_I_EMPTY_TYPE(), b) == CISP_I_EMPTY_TYPE()
 
 /* should replace the first matching field only */
-CISP_UNSETF(((b, b)) ((b, b)), b) == ((b, b))
+CISP_UNSETF((CISP_FIELD(b, b)) (CISP_FIELD(b, b)), b) == (CISP_FIELD(b, b))
 /* should work on field with a non C identifier value */
 CISP_UNSETF(type, d) == CISP_DEFCLASS((setf b b) (setf c c))
 /* should work with long tokens */
