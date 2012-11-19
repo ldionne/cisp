@@ -36,7 +36,7 @@
 #define CISP_I_GETF(_, s, self, key)                                           \
     CHAOS_PP_INLINE_WHEN _(CHAOS_PP_SEQ_IS_CONS _(self)) (                     \
         CHAOS_PP_IIF _(                                                        \
-            CISP_I_FIELD_COMPARE_KEY_OF_S _(                                   \
+            CISP_FIELD_COMPARE_KEY_OF_S _(                                     \
                 s,                                                             \
                 CHAOS_PP_SEQ_HEAD _(self),                                     \
                 key)) (                                                        \

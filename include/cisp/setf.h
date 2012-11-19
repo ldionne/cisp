@@ -33,7 +33,7 @@
     CISP_I_SETF_UNDERLYING_SETTER(                                             \
         s,                                                                     \
         self,                                                                  \
-        CISP_I_FIELD(                                                          \
+        CISP_FIELD(                                                            \
             CISP_I_TOKEN_TO_STRING(key),                                       \
             value))                                                            \
 /**/

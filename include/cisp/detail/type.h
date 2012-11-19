@@ -70,7 +70,7 @@
  * Precondition: head is a valid field.
  */
 #define CISP_II_SET_FIELD_UPDATE_FIRST(_, s, head, tail, field)                \
-    CHAOS_PP_IIF _(CISP_I_FIELD_COMPARE_KEYS_S _(s, head, field)) (            \
+    CHAOS_PP_IIF _(CISP_FIELD_COMPARE_KEYS_S _(s, head, field)) (              \
         /* If we have found the field, replace it and stop. */                 \
         CHAOS_PP_SEQ_CONS _(tail, field),                                      \
                                                                                \
@@ -135,7 +135,7 @@
  * Precondition: head is a valid field.
  */
 #define CISP_II_SET_FIELD_UPDATE_ALL(_, s, head, tail, field)                  \
-    CHAOS_PP_IIF _(CISP_I_FIELD_COMPARE_KEYS_S _(s, head, field)) (            \
+    CHAOS_PP_IIF _(CISP_FIELD_COMPARE_KEYS_S _(s, head, field)) (              \
         /* If we have found the field, replace it and erase any     */         \
         /* subsequent field with the same key.                      */         \
         CHAOS_PP_SEQ_CONS _(                                                   \
@@ -172,7 +172,7 @@
 
 /*Return whether the field has a key different from that of the other field.*/
 #define CISP_II_SFU_ALL_CONTINUE_PRED(s, field1, field2) \
-    CHAOS_PP_COMPL(CISP_I_FIELD_COMPARE_KEYS_S(s, field1, field2))
+    CHAOS_PP_COMPL(CISP_FIELD_COMPARE_KEYS_S(s, field1, field2))
 
 /****************************************************************************/
 
@@ -205,7 +205,7 @@
 /**/
 
 #define CISP_II_REMOVE_FIRST_FIELD(_, s, head, tail, key)                      \
-    CHAOS_PP_IIF _(CISP_I_FIELD_COMPARE_KEY_OF_S _(s, head, key)) (            \
+    CHAOS_PP_IIF _(CISP_FIELD_COMPARE_KEY_OF_S _(s, head, key)) (              \
             /* If we have found the field, remove it and stop. */              \
             tail,                                                              \
                                                                                \
@@ -260,7 +260,7 @@
 /**/
 
 #define CISP_I_REMOVE_ALL_FIELDS_PRED(s, field, key) \
-    CHAOS_PP_COMPL(CISP_I_FIELD_COMPARE_KEY_OF_S(s, field, key))
+    CHAOS_PP_COMPL(CISP_FIELD_COMPARE_KEY_OF_S(s, field, key))
 
 /* Detect whether @p type is empty. We need to eat the leading parenthesis
  * that we introduced in `CISP_I_REMOVE_ALL_FIELDS` to avoid having an empty
