@@ -6,6 +6,8 @@
 #define CISP_DETAIL_FIELD_H
 
 #include <chaos/preprocessor/tuple/elem.h>
+#include <chaos/preprocessor/recursion/expr.h>
+#include <chaos/preprocessor/string/compare.h>
 
 
 /**
@@ -25,5 +27,14 @@
  * Return the value of a field.
  */
 #define CISP_I_FIELD_VALUE(field) CHAOS_PP_TUPLE_ELEM(2, 1, field)
+
+/**
+ * Return whether a field has the same key as @p key.
+ */
+#define CISP_I_FIELD_COMPARE_KEY_OF(field, key) \
+    CISP_I_FIELD_COMPARE_KEY_OF_S(CHAOS_PP_STATE(), field, key)
+
+#define CISP_I_FIELD_COMPARE_KEY_OF_S(s, field, key) \
+    CHAOS_PP_STRING_COMPARE(key, CISP_I_FIELD_KEY(field))
 
 #endif /* !CISP_DETAIL_FIELD_H */

@@ -39,7 +39,6 @@
 #include <chaos/preprocessor/recursion/basic.h>
 #include <chaos/preprocessor/recursion/expr.h>
 #include <chaos/preprocessor/seq/core.h>
-#include <chaos/preprocessor/string/compare.h>
 
 
 /**
@@ -72,7 +71,7 @@
  * Precondition: head is a valid field.
  */
 #define CISP_II_SET_FIELD_UPDATE_FIRST(_, s, head, tail, key, value)           \
-    CHAOS_PP_IIF _(CHAOS_PP_STRING_COMPARE _(key, CISP_I_FIELD_KEY _(head))) ( \
+    CHAOS_PP_IIF _(CISP_I_FIELD_COMPARE_KEY_OF_S _(s, head, key)) (            \
         /* If we have found the field, replace it and stop. */                 \
         CHAOS_PP_SEQ_CONS _(                                                   \
             tail,                                                              \
@@ -109,7 +108,6 @@
 #include <chaos/preprocessor/recursion/expr.h>
 #include <chaos/preprocessor/seq/core.h>
 #include <chaos/preprocessor/seq/filter.h>
-#include <chaos/preprocessor/string/compare.h>
 
 
 /**
@@ -142,7 +140,7 @@
  * Precondition: head is a valid field.
  */
 #define CISP_II_SET_FIELD_UPDATE_ALL(_, s, head, tail, key, value)             \
-    CHAOS_PP_IIF _(CHAOS_PP_STRING_COMPARE _(key, CISP_I_FIELD_KEY _(head))) ( \
+    CHAOS_PP_IIF _(CISP_I_FIELD_COMPARE_KEY_OF_S _(s, head, key)) (            \
         /* If we have found the field, replace it and erase any     */         \
         /* subsequent field with the same key.                      */         \
         CHAOS_PP_SEQ_CONS _(                                                   \
@@ -180,7 +178,7 @@
 
 /* Return whether the field has the same key as key. */
 #define CISP_II_SFU_ALL_CONTINUE_PRED(s, field, key) \
-    CHAOS_PP_COMPL(CHAOS_PP_STRING_COMPARE(key, CISP_I_FIELD_KEY(field)))
+    CHAOS_PP_COMPL(CISP_I_FIELD_COMPARE_KEY_OF_S(s, field, key))
 
 /****************************************************************************/
 
@@ -190,7 +188,6 @@
 #include <chaos/preprocessor/recursion/basic.h>
 #include <chaos/preprocessor/recursion/expr.h>
 #include <chaos/preprocessor/seq/core.h>
-#include <chaos/preprocessor/string/compare.h>
 
 
 /**
@@ -214,7 +211,7 @@
 /**/
 
 #define CISP_II_REMOVE_FIRST_FIELD(_, s, head, tail, key)                      \
-    CHAOS_PP_IIF _(CHAOS_PP_STRING_COMPARE _(key, CISP_I_FIELD_KEY _(head))) ( \
+    CHAOS_PP_IIF _(CISP_I_FIELD_COMPARE_KEY_OF_S _(s, head, key)) (            \
             /* If we have found the field, remove it and stop. */              \
             tail,                                                              \
                                                                                \
@@ -246,7 +243,6 @@
 #include <chaos/preprocessor/recursion/expr.h>
 #include <chaos/preprocessor/seq/core.h>
 #include <chaos/preprocessor/seq/filter.h>
-#include <chaos/preprocessor/string/compare.h>
 
 
 /**
@@ -270,7 +266,7 @@
 /**/
 
 #define CISP_I_REMOVE_ALL_FIELDS_PRED(s, field, key) \
-    CHAOS_PP_COMPL(CHAOS_PP_STRING_COMPARE(key, CISP_I_FIELD_KEY(field)))
+    CHAOS_PP_COMPL(CISP_I_FIELD_COMPARE_KEY_OF_S(s, field, key))
 
 /* Detect whether @p type is empty. We need to eat the leading parenthesis
  * that we introduced in `CISP_I_REMOVE_ALL_FIELDS` to avoid having an empty

@@ -13,7 +13,6 @@
 #include <chaos/preprocessor/recursion/basic.h>
 #include <chaos/preprocessor/recursion/expr.h>
 #include <chaos/preprocessor/seq/core.h>
-#include <chaos/preprocessor/string/compare.h>
 
 
 /**
@@ -37,9 +36,10 @@
 #define CISP_I_GETF(_, s, self, key)                                           \
     CHAOS_PP_INLINE_WHEN _(CHAOS_PP_SEQ_IS_CONS _(self)) (                     \
         CHAOS_PP_IIF _(                                                        \
-            CHAOS_PP_STRING_COMPARE _(                                         \
-                key,                                                           \
-                CISP_I_FIELD_KEY _(CHAOS_PP_SEQ_HEAD _(self)))) (              \
+            CISP_I_FIELD_COMPARE_KEY_OF_S _(                                   \
+                s,                                                             \
+                CHAOS_PP_SEQ_HEAD _(self),                                     \
+                key)) (                                                        \
                                                                                \
             CISP_I_FIELD_VALUE _(CHAOS_PP_SEQ_HEAD _(self)),                   \
                                                                                \
