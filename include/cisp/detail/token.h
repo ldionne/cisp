@@ -155,7 +155,7 @@
  * The difference between this and @em `CISP_I_TOKEN_STRING_TAIL()` is that this
  * macro will trigger an error if the string has a length of exactly 1 token
  * and empty macro arguments is not supported. However, it does not require
- * the tail of the string to be a valid tokens or even C identifiers.
+ * the tail of the string to be valid tokens or even C identifiers.
  */
 #define CISP_I_TOKEN_STRING_TAIL_UNSAFE(string)                                \
     CHAOS_PP_IIF(CISP_I_TOKEN_STRING_IS_NIL(string)) (                         \
